@@ -1,5 +1,5 @@
 export async function callN8N(path: string, payload: unknown) {
-  const url = `${process.env.N8N_BASE_URL}${path}`;
+  const url = `https://moderndaycircus.app.n8n.cloud${path}`;
   const r = await fetch(url, {
     method: "POST",
     headers: {
