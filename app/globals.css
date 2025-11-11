@@ -4,27 +4,107 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Semantic/color tokens for light + dark */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Light theme — brighter, high-contrast */
+  --bg: #f7fbff;           /* very light background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --muted: #546b7a;        /* secondary text (readable gray) */
+  --text: #071827;         /* strong readable text */
+  --accent: #6d28d9;       /* violet, slightly toned */
+  --accent-2: #8b5cf6;     /* accent 2 */
+  --success: #16a34a;
+  --danger: #dc2626;
+  --glass: rgba(7,24,39,0.04);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* font tokens (keeps your existing font variables) */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark theme overrides — softened so text remains readable without being too harsh */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #071228;          /* deep navy (not pure black) */
+    --surface: #0f1a2a;     /* slightly lifted surface */
+    --muted: #9fb7c6;       /* lighter muted text for contrast */
+    --text: #e7f2fb;        /* readable light text */
+    --accent: #8b5cf6;      /* brighter violet in dark */
+    --accent-2: #c4b5fd;
+    --glass: rgba(255,255,255,0.03);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Accessibility helpers */
+:root {
+  --focus-ring: 3px solid color-mix(in srgb, var(--accent) 36%, transparent);
+}
+
+/* Base element styles */
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Surfaces and cards */
+.card, .bg-surface {
+  background-color: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+}
+
+/* Muted text */
+.muted, .text-muted {
+  color: var(--muted);
+}
+
+/* Accent utility */
+.btn-accent, .accent {
+  background-color: var(--accent);
+  color: #fff;
+}
+.btn-accent:focus, .accent:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:focus, a:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
+/* Inputs — clearer borders and focus */
+input, textarea, select, button {
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid rgba(7,24,39,0.08);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+input::placeholder, textarea::placeholder {
+  color: color-mix(in srgb, var(--muted) 60%, transparent);
+}
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 10%, transparent);
+  outline: none;
+}
+
+/* Provide a subtle elevated surface on hover for cards */
+.card:hover {
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+}
+
+/* Keep font variables consistent */
+:root {
+  --font-geist-sans: var(--font-sans);
+  --font-geist-mono: var(--font-mono);
 }
