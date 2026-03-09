@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
 
   try {
-    const res = await callN8N("/webhook/cbc9181b-15d6-4d8c-81d0-351755810ad6", parsed.data);
+    const res = await callN8N("/webhook-test/cbc9181b-15d6-4d8c-81d0-351755810ad6", parsed.data);
     return NextResponse.json(res);
   } catch (err: any) {
     return NextResponse.json({ error: String(err.message ?? err) }, { status: 502 });
