@@ -1,0 +1,1 @@
+export const INSTAGRAM_EXPORT_DIR = process.env.INSTAGRAM_EXPORT_DIR || '/Users/kriskleva/Documents/ModernDayCircusManager';

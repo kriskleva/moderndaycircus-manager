@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export:instagram": "npx tsx scripts/export-instagram.js"
   },
   "dependencies": {
     "next": "16.0.10",
